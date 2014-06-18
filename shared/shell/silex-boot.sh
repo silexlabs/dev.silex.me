@@ -9,9 +9,13 @@ cd ${SHARED_FOLDER}/Silex
 # defines port for Silex as PORT=80
 echo "defines port for Silex as PORT=80"
 PORT=80
+# build Silex
+echo "build Silex"
+sudo grunt deploy
+# remove previous grunt processes if any
+echo "remove previous grunt processes if any"
+sudo killall -9 grunt
 # start Silex server
 echo "start Silex server"
-sudo killall -9 grunt
-sudo grunt deploy
 sudo grunt watch &
 
