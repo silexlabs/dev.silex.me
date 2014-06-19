@@ -4,7 +4,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.network "private_network", ip: "192.168.68.5"
 
-  # config.vm.network "forwarded_port", guest: 80, host: 80
+  config.vm.network "forwarded_port", guest: 80, host: 80, auto_correct: true
   config.vm.network "forwarded_port", guest: 6805, host: 80
 
   config.vm.synced_folder "./shared", "/home/vagrant/shared", id: "vagrant-root", :nfs => false

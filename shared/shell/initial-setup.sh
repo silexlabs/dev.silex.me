@@ -9,7 +9,7 @@ bash -c 'BASH_ENV=/etc/profile exec bash'
 # define paths
 echo "define paths"
 SHARED_FOLDER=/home/vagrant/shared
-INITD_FOLDER=/etc/init.d
+INITD_FOLDER=/etc/init
 # copy boot script
 echo "copy boot script"
 sudo cp ${SHARED_FOLDER}/shell/silex-boot.sh ${INITD_FOLDER}/
@@ -58,9 +58,9 @@ echo "install grunt"
 sudo npm install -g grunt
 sudo npm install -g grunt-cli
 # clone Silex
-echo "clone Silex in ${SHARED_FOLDER}"
 cd ${SHARED_FOLDER}
 if [ ! -d "${SHARED_FOLDER}/Silex" ]; then
+  echo "clone Silex in ${SHARED_FOLDER}"
   git clone https://github.com/silexlabs/Silex.git
 fi
 cd Silex
@@ -71,10 +71,13 @@ git submodule update --init --recursive
 echo "install dependencies"
 sudo npm install
 # start Silex server
-echo "run Silex boot script"
-${INITD_FOLDER}/silex-boot.sh
+#echo "run Silex boot script"
+#${INITD_FOLDER}/silex-boot.sh
 # mesuring time
 END=$(date +%s)
 DIFF=$(( $END - $START ))
 echo "End time: $END"
 echo "Install script duration: $DIFF seconds"
+# now reboot in order to start Silex server
+echo "now reboot in order to start Silex server"
+sudo reboot
